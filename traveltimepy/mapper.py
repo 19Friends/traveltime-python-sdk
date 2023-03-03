@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Dict, Union, List, Optional
 
 from traveltimepy.errors import ApiError
-from traveltimepy import TimeFilterFastRequest_pb2
+# from traveltimepy import TimeFilterFastRequest_pb2
 
 from traveltimepy.dto.common import Location, Coordinates, FullRange, Property, Range
 from traveltimepy.dto.transportation import PublicTransport, Driving, Ferry, Walking, Cycling, DrivingTrain
@@ -512,25 +512,25 @@ def create_routes(
         raise ApiError('arrival_time or departure_time should be specified')
 
 
-def create_proto_request(
-    origin: Coordinates,
-    destinations: List[Coordinates],
-    transportation: ProtoTransportation,
-    travel_time: int
-) -> TimeFilterFastRequest_pb2.TimeFilterFastRequest:
-    request = TimeFilterFastRequest_pb2.TimeFilterFastRequest()
-
-    request.oneToManyRequest.departureLocation.lat = origin.lat
-    request.oneToManyRequest.departureLocation.lng = origin.lng
-
-    request.oneToManyRequest.transportation.type = transportation.value.code
-    request.oneToManyRequest.travelTime = travel_time
-    request.oneToManyRequest.arrivalTimePeriod = TimeFilterFastRequest_pb2.TimePeriod.WEEKDAY_MORNING
-
-    mult = math.pow(10, 5)
-    for destination in destinations:
-        lat_delta = round((destination.lat - origin.lat) * mult)
-        lng_delta = round((destination.lng - origin.lng) * mult)
-        request.oneToManyRequest.locationDeltas.extend([lat_delta, lng_delta])
-
-    return request
+# def create_proto_request(
+#     origin: Coordinates,
+#     destinations: List[Coordinates],
+#     transportation: ProtoTransportation,
+#     travel_time: int
+# ) -> TimeFilterFastRequest_pb2.TimeFilterFastRequest:
+#     request = TimeFilterFastRequest_pb2.TimeFilterFastRequest()
+#
+#     request.oneToManyRequest.departureLocation.lat = origin.lat
+#     request.oneToManyRequest.departureLocation.lng = origin.lng
+#
+#     request.oneToManyRequest.transportation.type = transportation.value.code
+#     request.oneToManyRequest.travelTime = travel_time
+#     request.oneToManyRequest.arrivalTimePeriod = TimeFilterFastRequest_pb2.TimePeriod.WEEKDAY_MORNING
+#
+#     mult = math.pow(10, 5)
+#     for destination in destinations:
+#         lat_delta = round((destination.lat - origin.lat) * mult)
+#         lng_delta = round((destination.lng - origin.lng) * mult)
+#         request.oneToManyRequest.locationDeltas.extend([lat_delta, lng_delta])
+#
+#     return request

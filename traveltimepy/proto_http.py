@@ -3,8 +3,8 @@ from typing import Dict
 
 from aiohttp import ClientSession, ClientResponse, BasicAuth, TCPConnector
 
-from traveltimepy.TimeFilterFastResponse_pb2 import TimeFilterFastResponse
-from traveltimepy.TimeFilterFastRequest_pb2 import TimeFilterFastRequest
+from traveltimepy.dto.requests.time_filter_fast import TimeFilterFastRequest
+from traveltimepy.dto.responses.time_filter_fast import TimeFilterFastResponse
 from traveltimepy.dto.responses.time_filter_proto import TimeFilterProtoResponse
 from traveltimepy.errors import ApiError
 

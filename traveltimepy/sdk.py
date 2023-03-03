@@ -27,7 +27,7 @@ from traveltimepy.mapper import (
     create_districts,
     create_sectors,
     create_routes,
-    create_proto_request,
+    # create_proto_request,
     create_time_map,
     create_intersection, create_union
 )

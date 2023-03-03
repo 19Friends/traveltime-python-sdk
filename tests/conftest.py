@@ -3,8 +3,14 @@ from typing import List
 
 import pytest
 
-from traveltimepy import Location, Coordinates
+from traveltimepy import Coordinates, Location
 from traveltimepy.sdk import TravelTimeSdk
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 
 @pytest.fixture
