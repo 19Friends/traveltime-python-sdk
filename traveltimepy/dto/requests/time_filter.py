@@ -1,14 +1,13 @@
 from datetime import datetime
 from typing import List, Optional, Union
 
-from pydantic import Field
 from pydantic.main import BaseModel
 
-from traveltimepy.dto.common import FullRange, Location, Property
+from traveltimepy.dto.common import Location, FullRange, Property
 from traveltimepy.dto.requests.request import TravelTimeRequest
 from traveltimepy.dto.responses.time_filter import TimeFilterResponse
-from traveltimepy.dto.transportation import Cycling, Driving, DrivingTrain, Ferry, PublicTransport, Walking
-from traveltimepy.itertools import flatten, split
+from traveltimepy.itertools import split, flatten
+from traveltimepy.dto.transportation import PublicTransport, Driving, Ferry, Walking, Cycling, DrivingTrain
 
 
 class ArrivalSearch(BaseModel):
@@ -19,7 +18,7 @@ class ArrivalSearch(BaseModel):
     travel_time: int
     transportation: Union[PublicTransport, Driving, Ferry, Walking, Cycling, DrivingTrain]
     properties: List[Property]
-    range: Optional[FullRange] = Field(None, alias="full_range")
+    range: Optional[FullRange] = None
 
 
 class DepartureSearch(BaseModel):
@@ -30,7 +29,7 @@ class DepartureSearch(BaseModel):
     travel_time: int
     transportation: Union[PublicTransport, Driving, Ferry, Walking, Cycling, DrivingTrain]
     properties: List[Property]
-    range: Optional[FullRange] = Field(None, alias="full_range")
+    range: Optional[FullRange] = None
 
 
 class TimeFilterRequest(TravelTimeRequest[TimeFilterResponse]):
